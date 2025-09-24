@@ -1,6 +1,6 @@
 const uuid = require('uuid')
 const path = require('path');
-const {Device, DeviceInfo} = require('../models/models')
+const {Device, DeviceInfo, Type, Brand} = require('../models/models')
 const ApiError = require('../error/ApiError');
 
 class DeviceController {
@@ -36,17 +36,18 @@ class DeviceController {
         limit = limit || 9
         let offset = page * limit - limit
         let devices;
+        const includeOptions = [Type, Brand];
         if (!brandId && !typeId) {
-            devices = await Device.findAndCountAll({limit, offset})
+            devices = await Device.findAndCountAll({limit, offset, include: includeOptions})
         }
         if (brandId && !typeId) {
-            devices = await Device.findAndCountAll({where:{brandId}, limit, offset})
+            devices = await Device.findAndCountAll({where:{brandId}, limit, offset, include: includeOptions})
         }
         if (!brandId && typeId) {
-            devices = await Device.findAndCountAll({where:{typeId}, limit, offset})
+            devices = await Device.findAndCountAll({where:{typeId}, limit, offset, include: includeOptions})
         }
         if (brandId && typeId) {
-            devices = await Device.findAndCountAll({where:{typeId, brandId}, limit, offset})
+            devices = await Device.findAndCountAll({where:{typeId, brandId}, limit, offset, include: includeOptions})
         }
         return res.json(devices)
     }

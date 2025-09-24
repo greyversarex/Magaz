@@ -12,10 +12,15 @@ const App = observer(() => {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        check().then(data => {
-            user.setUser(true)
-            user.setIsAuth(true)
-        }).finally(() => setLoading(false))
+        if (localStorage.getItem('token')) {
+            check().then(data => {
+                user.setUser(data)
+                user.setIsAuth(true)
+            }).catch(() => {
+                localStorage.removeItem('token')
+            })
+        }
+        setLoading(false)
     }, [])
 
     if (loading) {
