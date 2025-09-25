@@ -41,13 +41,13 @@ outputType = "console"
 name = "Frontend"
 author = "agent"
 
+[workflows.workflow.metadata]
+outputType = "webview"
+
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "cd online-store/client && NODE_OPTIONS=\"--openssl-legacy-provider\" npm start"
 waitForPort = 5000
-
-[workflows.workflow.metadata]
-outputType = "webview"
 
 [[workflows.workflow]]
 name = "Backend API"
@@ -76,6 +76,10 @@ externalPort = 80
 [[ports]]
 localPort = 5001
 externalPort = 3002
+
+[[ports]]
+localPort = 35331
+externalPort = 3003
 
 [deployment]
 deploymentTarget = "autoscale"
