@@ -1,0 +1,22 @@
+{
+  "name": "kupi-devays",
+  "version": "1.0.0",
+  "description": "E-commerce store for electronic devices",
+  "main": "server/index.js",
+  "scripts": {
+    "install-all": "cd server && npm install && cd ../client && npm install",
+    "dev": "cd server && npm run dev",
+    "dev-client": "cd client && npm start",
+    "build": "cd client && npm run build",
+    "start": "cd server && npm start",
+    "start-prod": "cd server && node server-prod.js",
+    "postinstall": "npm run build"
+  },
+  "keywords": ["ecommerce", "electronics", "react", "nodejs"],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  }
+}
