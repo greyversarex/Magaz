@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js",
-    "build": "echo 'No build step required for backend'"
+    "start-prod": "node server-prod.js",
+    "build": "echo 'No build step required for backend'",
+    "seed": "node seed-database.js"
   },
   "keywords": [],
   "author": "",
