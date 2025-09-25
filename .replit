@@ -77,10 +77,6 @@ externalPort = 80
 localPort = 5001
 externalPort = 3002
 
-[[ports]]
-localPort = 35331
-externalPort = 3003
-
 [deployment]
 deploymentTarget = "autoscale"
 run = ["bash", "-c", "cd online-store && npm install -g serve && serve -s client/build -p 5000 & cd server && npm start"]
