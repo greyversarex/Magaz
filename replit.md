@@ -1,70 +1,61 @@
-# Online Store - E-commerce Application
+# Overview
 
-## Overview
-This is a full-stack e-commerce application built with React (frontend) and Node.js/Express (backend), using PostgreSQL database. The application allows users to browse products, manage authentication, and includes admin functionality for managing products, brands, and types.
+This is a full-stack e-commerce web application for an online store, built with React for the frontend and Node.js/Express for the backend. The application allows users to browse devices, view product details, register/login, and includes an admin panel for managing products, brands, and device types. The system supports product categorization, pagination, image uploads, and user authentication with role-based access control.
 
-## Project Architecture
-- **Frontend**: React 17 with Bootstrap, MobX state management, running on port 5000
-- **Backend**: Node.js with Express, Sequelize ORM, running on port 3001  
-- **Database**: PostgreSQL with Replit's built-in database integration
-- **Authentication**: JWT-based authentication system
+# User Preferences
 
-## Recent Changes (September 24, 2025)
-- Successfully imported from GitHub repository
-- Set up PostgreSQL database with all required tables (users, products, baskets, etc.)
-- Configured React frontend with legacy OpenSSL provider for Node.js 20 compatibility
-- Set up proper environment variables for both development and production
-- Configured deployment settings for Replit's autoscale platform
-- Both frontend and backend are fully functional and communicating
+Preferred communication style: Simple, everyday language.
 
-## Environment Configuration
-### Development
-- Frontend: React development server on port 5000 with proxy settings
-- Backend: Express server on port 3001 with hot reload via nodemon
-- Database: PostgreSQL via Replit database integration
+# System Architecture
 
-### Production  
-- Built React app served statically on port 5000
-- Express API server on port 3001
-- Autoscale deployment configuration ready
+## Frontend Architecture
+- **Framework**: React 17 with Create React App
+- **State Management**: MobX for reactive state management with two main stores (UserStore for authentication, DeviceStore for product data)
+- **Routing**: React Router DOM for client-side navigation
+- **UI Framework**: React Bootstrap for responsive design and pre-built components
+- **HTTP Client**: Axios for API communication with interceptors for authentication
+- **Authentication**: JWT token-based authentication stored in localStorage
 
-## User Preferences
-- Uses existing project structure and conventions
-- Maintains original Sequelize database models
-- Preserves Russian/Cyrillic comments in codebase
-- Follows Bootstrap styling patterns established in the project
+## Backend Architecture
+- **Runtime**: Node.js with Express.js framework
+- **Database ORM**: Sequelize for PostgreSQL database operations
+- **Authentication**: JWT tokens with bcrypt for password hashing
+- **File Handling**: express-fileupload for image uploads with UUID-based file naming
+- **API Structure**: RESTful API with modular route organization (users, devices, brands, types)
+- **Error Handling**: Centralized error handling middleware with custom ApiError class
+- **Authorization**: Role-based middleware for admin-only operations
 
-## Key Features
-- Product browsing and search
-- User authentication (registration/login)
-- Shopping cart functionality  
-- Admin panel for product management
-- File upload for product images
-- Rating system
-- Brand and category management
+## Database Design
+- **ORM**: Sequelize with PostgreSQL
+- **Key Models**: User, Device, Brand, Type, Basket, Rating, DeviceInfo
+- **Relationships**: Many-to-many between types/brands, one-to-many for device associations
+- **Authentication**: SSL-enabled PostgreSQL connection for production deployment
 
-## Database Schema
-The application uses the following main entities:
-- Users (authentication, roles)
-- Devices (products with pricing, images, ratings)
-- Types (product categories)
-- Brands (product manufacturers)
-- Baskets (shopping carts)
-- Ratings (user product reviews)
-- Device Info (product specifications)
+## Security & Authorization
+- **Password Security**: bcrypt hashing with salt rounds
+- **JWT Authentication**: 24-hour token expiration with role-based claims
+- **Role-based Access**: Admin/User roles with middleware protection for admin routes
+- **CORS**: Configured for cross-origin requests between client and server
 
-## Status
-✅ Project fully set up and functional in Replit environment
-✅ Development workflows configured and running
-✅ Database connected and synchronized
-✅ Frontend-backend communication working
-✅ Security issues resolved (JWT secret key configured)
-✅ Network connectivity issues fixed
-✅ Deployment configuration complete
-✅ Ready for development and production use
+# External Dependencies
 
-## Fixed Issues
-- ✅ API connectivity problem resolved (correct Replit domain configuration)
-- ✅ Security vulnerability fixed (strong JWT secret key generated)
-- ✅ Server binding configuration updated for Replit environment
-- ✅ Frontend stability improved with proper Node.js flags
+## Frontend Dependencies
+- **React Ecosystem**: react, react-dom, react-router-dom, react-bootstrap
+- **State Management**: mobx, mobx-react-lite for reactive state management
+- **HTTP Client**: axios for API requests
+- **Authentication**: jwt-decode for token parsing
+- **UI/Styling**: bootstrap, react-bootstrap for responsive components
+
+## Backend Dependencies
+- **Core Framework**: express for web server functionality
+- **Database**: pg, pg-hstore, sequelize for PostgreSQL operations
+- **Authentication**: bcrypt, jsonwebtoken for security
+- **File Processing**: express-fileupload, uuid for image handling
+- **Environment**: dotenv for configuration management
+- **Development**: nodemon for development server auto-restart
+- **Middleware**: cors for cross-origin requests
+
+## External Services
+- **Database**: PostgreSQL with SSL connection (likely cloud-hosted)
+- **File Storage**: Local file system for uploaded device images
+- **CDN/Static Assets**: Bootstrap CSS from MaxCDN for styling
